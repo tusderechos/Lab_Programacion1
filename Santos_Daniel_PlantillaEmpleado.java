@@ -15,8 +15,8 @@ public class Santos_Daniel_PlantillaEmpleado {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        System.out.print("Ingrese el nombre completo del empleado: \n");
-        String NombreEmpleado = scanner.nextLine();
+        System.out.print("Ingrese el nombre del empleado usando guiones bajos en vez de espacios: \n");
+        String NombreEmpleado = scanner.next();
         
         System.out.print("Ingrese el numero de horas trabajadas en el mes: \n");
         double HorasTrabajadas = scanner.nextDouble();
@@ -35,5 +35,7 @@ public class Santos_Daniel_PlantillaEmpleado {
         System.out.println("Hora de trabajo mensual: " + HorasTrabajadas);
         System.out.println("Tarifa por hora: Lps. " + Tarifa_hora);
         System.out.println("Salario del Empleado Semanal: Lps. " + Salario_semanal);
+        
+        scanner.close();
     }
 }
