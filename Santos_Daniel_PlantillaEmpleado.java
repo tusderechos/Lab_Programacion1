@@ -8,6 +8,11 @@ package Lab_Programacion1;
  *
  * @author Hp
  */
+
+import java.util.Scanner;
+
 public class Santos_Daniel_PlantillaEmpleado {
+    Scanner scanner = new Scanner(System.in);
+    
     
 }
