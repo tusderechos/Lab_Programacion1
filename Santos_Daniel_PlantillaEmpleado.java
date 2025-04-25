@@ -15,7 +15,9 @@ public class Santos_Daniel_PlantillaEmpleado {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        System.out.print("Ingrese el nombre del empleado usando guiones bajos en vez de espacios: \n");
+        scanner.useDelimiter("\n");
+        
+        System.out.print("Ingrese el nombre completo del empleado: \n");
         String NombreEmpleado = scanner.next();
         
         System.out.print("Ingrese el numero de horas trabajadas en el mes: \n");
