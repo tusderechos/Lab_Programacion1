@@ -99,9 +99,9 @@ public class Santos_Daniel_Estructura {
                 break;
                 
             case 3: // Parte de Numeros Primos
-                Random random = new Random();
+                Random random = new Random(); //importando una clase llamada Random para generar numeros de manera aleatoria
                 
-                int Random = random.nextInt(100) + 1;
+                int Random = random.nextInt(100) + 1; //Variable que elige un numero aleatorio y se limita al 100, se le pone + 1 para que empieze por el uno
                 int Divisores = 0;
                 
                 for (int k = 1; k <= Random; k++) {
@@ -112,17 +112,53 @@ public class Santos_Daniel_Estructura {
                 }
                 
                 if (Divisores == 2) {
-                    System.out.println("\nEs Primo.");
+                    System.out.println("El numero random fue: " + Random + "\nEste numero es Primo.");
                 } else {
-                    System.out.println("\nNo es Primo.");
+                    System.out.println("El numero random fue: " + Random + "\nEste numero no es Primo.");
+                }
+                break;
+            case 4: // Parte de Votaciones 
+                System.out.print("Cuantos votantes hay?: ");
+                int TotalVotantes = scanner.nextInt();
+                
+                int azul = 0, rojo = 0, negro = 0, amarillo = 0, nulo = 0;
+                
+                for (int l = 0; l < TotalVotantes; l++) {
+                    System.out.println("Ingrese el voto #:" + l + "(Azul, Rojo, Negro, Amarillo): ");
+                    String Voto = scanner.next().toUpperCase();
+                    
+                    if (Voto.equals("azul")) {
+                        azul++;
+                    } else if (Voto.equals("rojo")) {
+                        rojo++;
+                    } else if (Voto.equals("negro")) {
+                        negro++;
+                    } else if (Voto.equals("amarillo")) {
+                        amarillo++;
+                    } else {
+                        nulo++;
+                    }
                 }
                 
-            case 4: // Parte de Votaciones 
+                int VotosValidos = azul + rojo + negro + amarillo;
+                double PorcentajeVotos = (VotosValidos * 100) / TotalVotantes;
+                
+                System.out.println("**** Resultados de Voto ****");
+                System.out.println("Azul: " + azul + " votos");
+                System.out.println("Rojo: " + rojo + " votos");
+                System.out.println("Negro: " + negro + " votos");
+                System.out.println("Amarillos: " + amarillo + " votos");
+                System.out.println("Nulos: " + nulo + " votos");
+                
+                break;
+                
             case 5: // Parte para Salir del Sistema
                 System.out.println("Saliendo del Sistema, por favor espere un segundo...");
                 break;
-            default:
+                
+            default: // Por si se ingresa algo que no es permitido
                 System.out.println("Eso no es permitido, por favor vuelva a ingresar una de las opciones disponibles.");
+                return;
         }
     }
 }
