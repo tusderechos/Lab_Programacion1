@@ -28,11 +28,16 @@ public class Santos_Daniel_Estructura {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
+        
+        int Contador1 = 0, Contador2 = 0, Contador3 = 0, Contador4 = 0;
+        boolean SalirSistema = false;    
+        
         MenuPrincipal();
         int Opcion = scanner.nextInt();
   
         switch(Opcion) {
             case 1: // Parte de Palabras Alreves e Identificacion de Palindromo
+                Contador1++;
                 System.out.print("Cuantas palabras va a ingresar?: ");
                 int CantidadPalabras = scanner.nextInt();
                 
@@ -69,6 +74,7 @@ public class Santos_Daniel_Estructura {
                 break;
                 
             case 2: // Parte de Numeros Perfectos
+                Contador2++;
                 System.out.println("Ingrese un numero: ");
                 int Numero = scanner.nextInt();
         
@@ -99,6 +105,7 @@ public class Santos_Daniel_Estructura {
                 break;
                 
             case 3: // Parte de Numeros Primos
+                Contador3++;
                 Random random = new Random(); //importando una clase llamada Random para generar numeros de manera aleatoria
                 
                 int Random = random.nextInt(100) + 1; //Variable que elige un numero aleatorio y se limita al 100, se le pone + 1 para que empieze por el uno
@@ -118,14 +125,15 @@ public class Santos_Daniel_Estructura {
                 }
                 break;
             case 4: // Parte de Votaciones 
+                Contador4++;
                 System.out.print("Cuantos votantes hay?: ");
                 int TotalVotantes = scanner.nextInt();
                 
                 int azul = 0, rojo = 0, negro = 0, amarillo = 0, nulo = 0;
                 
-                for (int l = 0; l < TotalVotantes; l++) {
+                for (int l = 1; l <= TotalVotantes; l++) {
                     System.out.println("Ingrese el voto #:" + l + "(Azul, Rojo, Negro, Amarillo): ");
-                    String Voto = scanner.next().toUpperCase();
+                    String Voto = scanner.next().toLowerCase();
                     
                     if (Voto.equals("azul")) {
                         azul++;
@@ -144,11 +152,42 @@ public class Santos_Daniel_Estructura {
                 double PorcentajeVotos = (VotosValidos * 100) / TotalVotantes;
                 
                 System.out.println("**** Resultados de Voto ****");
-                System.out.println("Azul: " + azul + " votos");
-                System.out.println("Rojo: " + rojo + " votos");
-                System.out.println("Negro: " + negro + " votos");
-                System.out.println("Amarillos: " + amarillo + " votos");
-                System.out.println("Nulos: " + nulo + " votos");
+                System.out.println("AZUL: " + azul + " votos");
+                System.out.println("ROJO: " + rojo + " votos");
+                System.out.println("NEGRO: " + negro + " votos");
+                System.out.println("AMARILLO: " + amarillo + " votos");
+                System.out.println("NULOS: " + nulo + " votos");
+                
+                if (PorcentajeVotos >= 60) {
+                    String Ganador = "";
+                    int MayorVotos = Math.max(Math.max(azul, rojo), Math.max(negro, amarillo));
+                    int Conteo_ganadores = 0;
+                
+                    if (azul == MayorVotos) {
+                        Ganador += "AZUL ";
+                        Conteo_ganadores++;
+                    }
+                    if (rojo == MayorVotos) {
+                        Ganador += "ROJO ";
+                        Conteo_ganadores++;
+                    }
+                    if (negro == MayorVotos) {
+                        Ganador += "NEGRO ";
+                        Conteo_ganadores++;
+                    }
+                    if (amarillo == MayorVotos) {
+                        Ganador += "AMARILLO ";
+                        Conteo_ganadores++;
+                    }
+                    
+                    if (Conteo_ganadores > 1) {
+                        System.out.println("Empate entre: " + Ganador.trim());
+                    } else {
+                        System.out.println("La plantilla ganadora fue: " + Ganador.trim());
+                    }
+                } else {
+                    System.out.println("VOTACION FALLIDA");
+                }
                 
                 break;
                 
