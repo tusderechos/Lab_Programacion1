@@ -92,7 +92,7 @@ public class Santos_Daniel_Estructura {
 
                     int suma = 0;
                     
-                    for (int i = 1; i < Numero; i++) {
+                    for (int i = 1; i < Numero; i++) {                                 
                         if (Numero % i == 0) {
                             suma += i;
                         }
@@ -113,19 +113,20 @@ public class Santos_Daniel_Estructura {
                     int Random = random.nextInt(100) + 1; //Variable que elige un numero aleatorio y se limita al 100, se le pone + 1 para que empieze por el uno
                     int Divisores = 0;
 
-                    for (int k = 1; k <= Random; k++) {
+                    for (int k = 1; k <= Random; k++) { //for que dice que lo siguiente se repite hasta que k llegue a ser igual a el numero random que se eligio
                         if (Random % k == 0) {
                             System.out.println(k + " ");
                             Divisores++;
                         }
                     }
 
-                    if (Divisores == 2) {
+                    if (Divisores == 2) { //if para revisar si el umero es primo o no es primo
                         System.out.println("El numero random fue: " + Random + "\nEste numero es Primo.");
                     } else {
                         System.out.println("El numero random fue: " + Random + "\nEste numero no es Primo.");
                     }
                     break;
+                    
                 case 4: // Parte de Votaciones 
                     Contador4++;
                     System.out.print("Cuantos votantes hay?: ");
@@ -136,7 +137,7 @@ public class Santos_Daniel_Estructura {
                         TotalVotantes = scanner.nextInt();
                     }
 
-                    int azul = 0, rojo = 0, negro = 0, amarillo = 0, nulo = 0;
+                    int azul = 0, rojo = 0, negro = 0, amarillo = 0, nulo = 0; //creacion de variables para poder contar los votos
 
                     for (int l = 1; l <= TotalVotantes; l++) {
                         System.out.println("Ingrese el voto #:" + l + "(Azul, Rojo, Negro, Amarillo): ");
@@ -162,7 +163,7 @@ public class Santos_Daniel_Estructura {
                     }
 
                     int VotosValidos = azul + rojo + negro + amarillo;
-                    double PorcentajeVotos = (VotosValidos * 100) / TotalVotantes;
+                    double PorcentajeVotos = (VotosValidos * 100) / TotalVotantes; //para sacar el total del porcentaje de los votos
 
                     System.out.println("**** Resultados de Voto ****");
                     System.out.println("AZUL: " + azul + " votos");
@@ -171,9 +172,9 @@ public class Santos_Daniel_Estructura {
                     System.out.println("AMARILLO: " + amarillo + " votos");
                     System.out.println("NULOS: " + nulo + " votos");
 
-                    if (PorcentajeVotos >= 60) {
+                    if (PorcentajeVotos >= 60) { //if para sacar el ganador
                         String Ganador = "";
-                        int MayorVotos = Math.max(Math.max(azul, rojo), Math.max(negro, amarillo));
+                        int MayorVotos = Math.max(Math.max(azul, rojo), Math.max(negro, amarillo)); //para saber cual es el que gano la mayoria de los votos
                         int Conteo_ganadores = 0;
 
                         if (azul == MayorVotos) {
@@ -194,12 +195,12 @@ public class Santos_Daniel_Estructura {
                         }
 
                         if (Conteo_ganadores > 1) {
-                            System.out.println("Empate entre: " + Ganador.trim());
+                            System.out.println("Empate entre: " + Ganador.trim()); //el que tenga mayor votos es mostrado aqui
                         } else {
-                            System.out.println("La plantilla ganadora fue: " + Ganador.trim());
+                            System.out.println("La plantilla ganadora fue: " + Ganador.trim()); //si hay un empate, se muetran los dos aqui
                         }
                     } else {
-                        System.out.println("VOTACION FALLIDA");
+                        System.out.println("VOTACION FALLIDA"); //si ganan los votos nulos
                     }
 
                     break;
@@ -212,7 +213,7 @@ public class Santos_Daniel_Estructura {
                     System.out.println("4. Votaciones: " + Contador4 + " veces");
                     System.out.println("\r                                                                                                                                                      ");
                     System.out.println("Saliendo del Sistema, por favor espere un segundo...");
-                    SalirSistema = true;
+                    SalirSistema = true; //Aqui se llama el coso para salir del sistema y dice que sea verdadero (esta normalmente en falso)
                     break;
                 
                 default: // Por si se ingresa algo que no es permitido
