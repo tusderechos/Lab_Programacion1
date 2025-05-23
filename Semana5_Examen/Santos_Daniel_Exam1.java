@@ -22,6 +22,7 @@ public class Santos_Daniel_Exam1 {
         String FraseDescifrada = " ";
         
         do {            
+            System.out.println("\r                                                                                          ");
             System.out.println("=======     Menu Principal    =======");
             System.out.println("| Opciones:                         |");
             System.out.println("-------------------------------------");
@@ -41,7 +42,7 @@ public class Santos_Daniel_Exam1 {
             
             switch(Opcion) {
                 case 1:
-                    //Parte de Piramide
+                    //Parte de Piramide de numeros impares
                     System.out.print("Cantidad de fila de piramide: ");
                     int CantidadFila = scanner.nextInt();
                     
@@ -100,10 +101,69 @@ public class Santos_Daniel_Exam1 {
                         }
                     }
                     
+                    System.out.println("La frase descifrada es: " + FraseDescifrada);
+                    
                     break;
                 
                 case 3:
                     //Parte del juego de piedra, papel, o tijera
+                    Random random = new Random();
+                    
+                    System.out.println("Bienvenido al juego de Piedra, Papel o Tijera!");
+                    
+                    boolean JugarOtravez = true;
+                    
+                    while(JugarOtravez) {
+                        String TurnoUsuario = " ";
+                        boolean EntradaValidada = false;
+                        
+                        while(!EntradaValidada) {
+                            System.out.println("Ingrese su opcion! (piedra, papel, o tijera): ");
+                            TurnoUsuario = scanner.next().toLowerCase();
+                            
+                            if (TurnoUsuario.equals("piedra") || TurnoUsuario.equals("papel") || TurnoUsuario.equals("tijera")) {
+                                EntradaValidada = true;
+                            } else {
+                                System.out.println("Eso no es permitido. Vuelva a ingresar una de las 3 opciones: ");
+                            }
+                            
+                            int Computadora = random.nextInt(3);
+                            String TurnoComputadora = " ";
+                            
+                            if (Computadora == 0) {
+                                TurnoComputadora = "piedra";
+                            } else if (Computadora == 1) {
+                                TurnoComputadora = "papel";
+                            } else {
+                                TurnoComputadora = "tijera";
+                            }
+                            
+                            System.out.println("La eleccion de la computadora fue: " + TurnoComputadora);
+                            
+                            if (TurnoUsuario.equals(TurnoComputadora)) {
+                                System.out.println("Ha habido un empate!");
+                            } else if (
+                                    (TurnoUsuario.equals("piedra") && TurnoComputadora.equals("tijera")) ||
+                                    (TurnoUsuario.equals("papel") && TurnoComputadora.equals("piedra")) ||
+                                    (TurnoUsuario.equals("tijera") && TurnoComputadora.equals("papel"))
+                                    ) {
+                                System.out.println("Has ganado!!");
+                            } else {
+                                System.out.println("La computadora ha ganado!");
+                            } 
+                            
+                            System.out.println("Quieres seguir jugando?");
+                            String sino = scanner.next();
+                            
+                            if (sino.equals("no") || sino.equals("n")) {
+                                JugarOtravez = false;
+                                System.out.println("Muchas gracias por antender este juego! esperamos que vuelva a jugar pronto!");
+                            }
+                        }
+                    }
+                    
+                    break;
+                    
                 case 4:
                     //Parte de Adivinar
                 case 5:
