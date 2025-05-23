@@ -164,7 +164,7 @@ public class Santos_Daniel_Exam1 {
                             } 
                             
                             System.out.println("Quieres seguir jugando?");
-                            String nosi = scanner.next();
+                            String nosi = scanner.next().toLowerCase();
                             
                             if (nosi.equals("no") || nosi.equals("n")) {
                                 JugarOtravez = false;
