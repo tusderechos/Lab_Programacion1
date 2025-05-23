@@ -15,11 +15,12 @@ import java.util.Random;
 public class Santos_Daniel_Exam1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
         scanner.useDelimiter("\n");
         
         int Opcion = 0;
-        String FraseCifrada = " ";
-        String FraseDescifrada = " ";
+        String FraseCifrada = "";
+        String FraseDescifrada = "";
         
         do {            
             System.out.println("\r                                                                                          ");
@@ -69,7 +70,7 @@ public class Santos_Daniel_Exam1 {
                     System.out.println("Ingrese una palabra o frase para cifrar: ");
                     String Frase = scanner.next();
 
-                    FraseCifrada = " ";
+                    FraseCifrada = "";
 
                     for (int i = 0; i < Frase.length(); i++) {
                         char Caracter = Frase.charAt(i);
@@ -87,34 +88,44 @@ public class Santos_Daniel_Exam1 {
 
                     //Parte para Descifrar palabra/frase ya cifrada
                     
-                    FraseDescifrada = " ";
-
-                    for (int i = 0; i < FraseCifrada.length(); i++) {
-                        char Caracter = FraseCifrada.charAt(i);
-
-                        if (Caracter >= 'a' && Caracter <= 'z') {
-                            FraseCifrada += (char) ('z' - (Caracter - 'a'));
-                        } else if (Caracter >= 'A' && Caracter <= 'Z') {
-                            FraseCifrada += (char) ('Z' - (Caracter - 'A'));
-                        } else {
-                            FraseCifrada += Caracter;
-                        }
-                    }
+                    System.out.println("Quiere descifrar su frase?");
+                    String sino = scanner.next().toLowerCase();
                     
-                    System.out.println("La frase descifrada es: " + FraseDescifrada);
+                    boolean DescifrarValido = false;
+                    
+                    if (sino.equals("si") || sino.equals("s")) {
+                        DescifrarValido = true;
+                        
+                        FraseDescifrada = "";
+
+                        for (int i = 0; i < FraseCifrada.length(); i++) {
+                            char Caracter = FraseCifrada.charAt(i);
+
+                            if (Caracter >= 'a' && Caracter <= 'z') {
+                                FraseDescifrada += (char) ('z' - (Caracter - 'a'));
+                            } else if (Caracter >= 'A' && Caracter <= 'Z') {
+                                FraseDescifrada += (char) ('Z' - (Caracter - 'A'));
+                            } else {
+                                FraseDescifrada += Caracter;
+                            }
+                        }
+
+                        System.out.println("La frase descifrada es: " + FraseDescifrada);
+                    } else {
+                        System.out.println("Ha decidido no descifrar la frase.");
+                    }
                     
                     break;
                 
                 case 3:
                     //Parte del juego de piedra, papel, o tijera
-                    Random random = new Random();
                     
                     System.out.println("Bienvenido al juego de Piedra, Papel o Tijera!");
                     
                     boolean JugarOtravez = true;
                     
                     while(JugarOtravez) {
-                        String TurnoUsuario = " ";
+                        String TurnoUsuario = "";
                         boolean EntradaValidada = false;
                         
                         while(!EntradaValidada) {
@@ -128,7 +139,7 @@ public class Santos_Daniel_Exam1 {
                             }
                             
                             int Computadora = random.nextInt(3);
-                            String TurnoComputadora = " ";
+                            String TurnoComputadora = "";
                             
                             if (Computadora == 0) {
                                 TurnoComputadora = "piedra";
@@ -153,9 +164,9 @@ public class Santos_Daniel_Exam1 {
                             } 
                             
                             System.out.println("Quieres seguir jugando?");
-                            String sino = scanner.next();
+                            String nosi = scanner.next();
                             
-                            if (sino.equals("no") || sino.equals("n")) {
+                            if (nosi.equals("no") || nosi.equals("n")) {
                                 JugarOtravez = false;
                                 System.out.println("Muchas gracias por antender este juego! esperamos que vuelva a jugar pronto!");
                             }
@@ -166,6 +177,44 @@ public class Santos_Daniel_Exam1 {
                     
                 case 4:
                     //Parte de Adivinar
+                    int NumeroSecreto = random.nextInt(100) + 1;
+                    int Intentos = 0;
+                    int Limite = 10;
+                    int NumeroAdivinado = 0;
+                    boolean NumeroAcertado = false;
+                    
+                    System.out.println("Bienvenido al juego de Adivinanza!");
+                    System.out.println("Tiene " + Limite + " para adivinar el numero secreto entre 1 y 100!");
+                    
+                    while(Intentos < Limite) {
+                        Intentos++;
+                        System.out.println("Intento # " + Intentos + ", ingresa tu numero:");
+                        int Adivinado = scanner.nextInt();
+                        
+                        if (Adivinado == NumeroSecreto) {
+                            NumeroAdivinado = Adivinado;
+                            NumeroAcertado = true;
+                            System.out.println("Haz acertado el numero secreto!");
+                            System.out.println("Lo acertaste en " + Intentos + " intentos!");
+                            break;
+                        } else if (Adivinado > NumeroSecreto) {
+                            System.out.println("El numero que usted ingreso es MAYOR al numero secreto!");
+                        } else {
+                            System.out.println("El numero que usted ingreso es MENOR al numero secreto!");
+                        }
+                        
+                        System.out.println("Te quedan " + (Limite - Intentos) + " intentos!");
+                    }
+                    
+                    if (!NumeroAcertado) {
+                        System.out.println("\r                                                                                  ");
+                            System.out.println("No pudo encontrar el numero secreto dentro de los intentos dados.");
+                            System.out.println("El numero era: " + NumeroSecreto);
+                    }
+                    
+                    System.out.println("Fin del Juego");
+                    break;
+                    
                 case 5:
                     System.out.println("Saliendo del Sistema...");
                     break;
