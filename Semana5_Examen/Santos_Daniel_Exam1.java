@@ -1,0 +1,118 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Lab_Programacion1.Semana5_Examen;
+
+/**
+ *
+ * @author Hp
+ */
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class Santos_Daniel_Exam1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+        
+        int Opcion = 0;
+        String FraseCifrada = " ";
+        String FraseDescifrada = " ";
+        
+        do {            
+            System.out.println("=======     Menu Principal    =======");
+            System.out.println("| Opciones:                         |");
+            System.out.println("-------------------------------------");
+            System.out.println("| 1. Piramide                       |");
+            System.out.println("-------------------------------------");
+            System.out.println("| 2. Clave                          |");
+            System.out.println("-------------------------------------");
+            System.out.println("| 3. Juego de Piedra, Papel o Tijera|");
+            System.out.println("-------------------------------------");
+            System.out.println("| 4. Adivinar                       |");
+            System.out.println("-------------------------------------");
+            System.out.println("| 5. Salir                          |");
+            System.out.println("=====================================");
+            System.out.println("\r                                                      ");
+            System.out.println("Bienvenido al Menu Principal, ingrese una de las opciones para continuar: ");
+            Opcion = scanner.nextInt();
+            
+            switch(Opcion) {
+                case 1:
+                    //Parte de Piramide
+                    System.out.print("Cantidad de fila de piramide: ");
+                    int CantidadFila = scanner.nextInt();
+                    
+                    int Numero = 1;
+                    
+                    for (int i = 1; i <= CantidadFila; i++) {
+                        int Suma = 0;
+                        
+                        for (int j = 1; j <= i; j++) {
+                            System.out.print(Numero + " ");
+                            Suma += Numero;
+                            Numero += 2;
+                        }
+                        
+                        System.out.println("= " + Suma);
+                    }
+                    
+                    break;
+                    
+                case 2:
+                    //Parte de Clave (es el cifrado de atbash woooooooooooooooooooooooooooooooooooooooooooooooooooooooooo)
+                    
+                    //Parte para Cifrar
+                    System.out.println("Ingrese una palabra o frase para cifrar: ");
+                    String Frase = scanner.next();
+
+                    FraseCifrada = " ";
+
+                    for (int i = 0; i < Frase.length(); i++) {
+                        char Caracter = Frase.charAt(i);
+
+                        if (Caracter >= 'a' && Caracter <= 'z') {
+                            FraseCifrada += (char) ('z' - (Caracter - 'a'));
+                        } else if (Caracter >= 'A' && Caracter <= 'Z') {
+                            FraseCifrada += (char) ('Z' - (Caracter - 'A'));
+                        } else {
+                            FraseCifrada += Caracter;
+                        }
+                    }
+                    System.out.println("La frase cifrada es: " + FraseCifrada);
+
+
+                    //Parte para Descifrar palabra/frase ya cifrada
+                    
+                    FraseDescifrada = " ";
+
+                    for (int i = 0; i < FraseCifrada.length(); i++) {
+                        char Caracter = FraseCifrada.charAt(i);
+
+                        if (Caracter >= 'a' && Caracter <= 'z') {
+                            FraseCifrada += (char) ('z' - (Caracter - 'a'));
+                        } else if (Caracter >= 'A' && Caracter <= 'Z') {
+                            FraseCifrada += (char) ('Z' - (Caracter - 'A'));
+                        } else {
+                            FraseCifrada += Caracter;
+                        }
+                    }
+                    
+                    break;
+                
+                case 3:
+                    //Parte del juego de piedra, papel, o tijera
+                case 4:
+                    //Parte de Adivinar
+                case 5:
+                    System.out.println("Saliendo del Sistema...");
+                    break;
+                default:
+                    System.out.println("Eso no es permitido, por favor vuelva a ingresar una opcion valida");
+                    break;
+            }
+        } while (Opcion != 5);
+    }
+}
