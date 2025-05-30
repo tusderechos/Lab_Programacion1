@@ -13,11 +13,20 @@ import javax.swing.JFrame;
 import java.util.Random;
 
 public class Santos_Daniel_IDClase extends JFrame {
+    
+    private String[] Palabras = {"UZBEKISTAN", "HONDURAS", "TIJUANA", "TEGUCIGALPA", "CEIBA", "AARON", "VENEZUELA", "MEXICO", "KAZAKHSTAN", "OTOROHANGA"};
 
     /**
      * Creates new form NewJFrame
      */
+    
+    private String PalabraActual;
+    private int Oportunidades;
+    private String LetrasUsadas;
+    
     public Santos_Daniel_IDClase() {
+        Random random = new Random();
+        LetrasUsadas = "";
         initComponents();
     }
 
@@ -37,7 +46,7 @@ public class Santos_Daniel_IDClase extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("AHORCADOS");
+        jLabel1.setText("MENU PRINCIPAL");
 
         Jugar.setText("Jugar");
         Jugar.addActionListener(new java.awt.event.ActionListener() {
@@ -57,13 +66,14 @@ public class Santos_Daniel_IDClase extends JFrame {
                 .addComponent(CambiarPalabras)
                 .addGap(138, 138, 138))
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(Jugar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(122, 122, 122))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(Jugar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel1)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,6 +95,7 @@ public class Santos_Daniel_IDClase extends JFrame {
         
     }//GEN-LAST:event_JugarActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
