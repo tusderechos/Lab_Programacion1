@@ -10,11 +10,10 @@ package Lab_Programacion1.Semana6;
  */
 
 import javax.swing.JFrame;
-import java.util.Random;
 
 public class Santos_Daniel_IDClase extends JFrame {
     
-    private String[] Palabras = {"UZBEKISTAN", "HONDURAS", "TIJUANA", "TEGUCIGALPA", "CEIBA", "AARON", "VENEZUELA", "MEXICO", "KAZAKHSTAN", "OTOROHANGA"};
+    public static String[] Palabras = {"UZBEKISTAN", "HONDURAS", "TIJUANA", "TEGUCIGALPA", "CEIBA", "AARON", "VENEZUELA", "MEXICO", "KAZAKHSTAN", "OTOROHANGA"};
 
     /**
      * Creates new form NewJFrame
@@ -25,8 +24,6 @@ public class Santos_Daniel_IDClase extends JFrame {
     private String LetrasUsadas;
     
     public Santos_Daniel_IDClase() {
-        Random random = new Random();
-        LetrasUsadas = "";
         initComponents();
     }
 
@@ -56,6 +53,11 @@ public class Santos_Daniel_IDClase extends JFrame {
         });
 
         CambiarPalabras.setText("Cambiar Palabras");
+        CambiarPalabras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CambiarPalabrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,9 +94,19 @@ public class Santos_Daniel_IDClase extends JFrame {
 
     private void JugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JugarActionPerformed
         // TODO add your handling code here:
-        
+        Juego Juego = new Juego(this);
+        Juego.setVisible(true);
+        this.setVisible(false); //Ocultar menu principal
     }//GEN-LAST:event_JugarActionPerformed
 
+    private void CambiarPalabrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarPalabrasActionPerformed
+        // TODO add your handling code here:
+        CambiarPalabras Cambiar = new CambiarPalabras(this);
+        Cambiar.setVisible(true);
+        this.setVisible(false); //Ocultar menu principal
+    }//GEN-LAST:event_CambiarPalabrasActionPerformed
+
+    
     
     /**
      * @param args the command line arguments

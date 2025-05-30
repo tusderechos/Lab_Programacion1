@@ -8,13 +8,59 @@ package Lab_Programacion1.Semana6;
  *
  * @author Hp
  */
-public class Juego extends javax.swing.JFrame {
 
+import java.awt.Color;
+import java.util.Random;
+import javax.swing.JOptionPane;
+
+public class Juego extends javax.swing.JFrame {
+    
+    private Santos_Daniel_IDClase MenuPrincipal;
+    private String PalabraActual;
+    private StringBuilder PalabraOculta;
+    private int Oportunidades;
+    private String LetrasUsadas;
+    private Random random;
     /**
      * Creates new form Juego
      */
-    public Juego() {
+    public Juego(Santos_Daniel_IDClase Menu) {
+        this.MenuPrincipal = Menu;
+        random = new Random();
         initComponents();
+        IniciarJuego();
+    }
+    
+    private void IniciarJuego() {
+        PalabraActual = Santos_Daniel_IDClase.Palabras[random.nextInt(Santos_Daniel_IDClase.Palabras.length)];
+        Oportunidades = 5;
+        LetrasUsadas = "";
+        
+        //Crear palabras ocultas
+        PalabraOculta = new StringBuilder();
+        for (int i = 0; i < PalabraActual.length(); i++) {
+            if (PalabraActual.charAt(i) == ' ') {
+                PalabraOculta.append("  ");
+            } else {
+                PalabraOculta.append("_ ");
+            }
+        }
+        
+        //Interfaz
+        Palabra.setText(PalabraOculta.toString());
+        
+        Oportunidad.setText("Oportunidad = " + Oportunidades);
+        Oportunidad.setForeground(Color.BLACK);
+        
+        Mensaje.setText("");
+        Mensaje.setForeground(Color.BLACK);
+        
+        Letra.setText("");
+        Letra.setEnabled(true);
+        
+        Ingresar.setEnabled(true);
+        
+        Letra.requestFocus();
     }
 
     /**
@@ -26,108 +72,205 @@ public class Juego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Titulo = new javax.swing.JLabel();
+        Letra = new javax.swing.JTextField();
+        Ingresar = new javax.swing.JButton();
+        Mensaje = new javax.swing.JLabel();
+        Volver = new javax.swing.JButton();
+        Oportunidad = new javax.swing.JLabel();
+        Palabra = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        Submit = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("AHORCADOS");
+        Titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        Titulo.setText("AHORCADOS");
 
-        Submit.setText("Submit");
-        Submit.addActionListener(new java.awt.event.ActionListener() {
+        Letra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitActionPerformed(evt);
+                LetraActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("jLabel2");
+        Ingresar.setText("Ingresar");
+        Ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarActionPerformed(evt);
+            }
+        });
+
+        Mensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Mensaje.setText("Ingrese su letra aqui");
+
+        Volver.setText("Volver");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverActionPerformed(evt);
+            }
+        });
+
+        Oportunidad.setText("Oportunidades: ");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(".");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Volver)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Submit)
-                        .addGap(163, 163, 163))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Oportunidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Mensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(Letra))
                         .addGap(146, 146, 146))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(Ingresar)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel1))
+                        .addGap(178, 178, 178)
+                        .addComponent(Palabra))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(Titulo)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(Submit)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Palabra)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Oportunidad)
+                    .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Letra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(Ingresar)
+                .addGap(41, 41, 41)
+                .addComponent(Volver)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+    private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SubmitActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        String Entrada = Letra.getText().toUpperCase().trim();
+        
+        if (Entrada.isEmpty()) {
+            Mensaje.setText("Por favor ingresa un caracter");
+            Mensaje.setForeground(Color.RED);
+            return;
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Juego().setVisible(true);
+        
+        if (Entrada.length() > 1) {
+            Mensaje.setText("Solo se permite un caracter");
+            Mensaje.setForeground(Color.RED);
+            return;
+        }
+        
+        char Caracter = Entrada.charAt(0);
+        
+        if (LetrasUsadas.indexOf(Caracter) != -1) {
+            Mensaje.setText("Ese caracter ya fue usado!");
+            Mensaje.setForeground(new Color(200, 150, 0));
+            Letra.setText("");
+            return;
+        }
+        
+        LetrasUsadas += Caracter + " ";
+        
+        boolean Encontrada = false;
+        for (int i = 0; i < PalabraActual.length(); i++) {
+            if (PalabraActual.charAt(i) == Caracter) {
+                PalabraOculta.setCharAt(i * 2, Caracter);
+                Encontrada = true;
             }
-        });
-    }
+        }
+        
+        if (Encontrada) {
+            Mensaje.setText("Le pegaste a un caracter!");
+            Mensaje.setForeground(new Color(50, 150, 50));
+        } else {
+            Oportunidades--;
+            Mensaje.setText("La palabra no contiene ese caracter.");
+            Mensaje.setForeground(Color.RED);
+        }
+        
+        Letra.setText("");
+        Letra.requestFocus();
+        
+        Palabra.setText(PalabraOculta.toString());
+        Oportunidad.setText("Oportunidad = " + Oportunidades);
+        
+        if (Oportunidades <= 2) {
+            Oportunidad.setForeground(Color.RED);
+        } else if (Oportunidades <= 3) {
+            Oportunidad.setForeground(new Color(200, 150, 0));
+        } else {
+            Oportunidad.setForeground(Color.BLACK);
+        }
+        
+        String Revelada = PalabraOculta.toString().replace(" ", "");
+        if (Revelada.equals(PalabraActual)) {
+            Letra.setEnabled(false);
+            Ingresar.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "Has advinado la palabra correctamente!\nLa palabra era: " + PalabraActual, "Felicitaciones, Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+            
+            if (JOptionPane.showConfirmDialog(this, "Deseas jugar otra vez?", "Nueva Partida", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                IniciarJuego();
+            }
+        } else if (Oportunidades == 0) {
+            Letra.setEnabled(false);
+            Ingresar.setEnabled(false);
+            Palabra.setText(PalabraActual);
+            JOptionPane.showMessageDialog(this, "Te has quedado sin oportunidades.\nLa palabra oculta era: " + PalabraActual, "Juego Terinado", JOptionPane.ERROR_MESSAGE);
+            if (JOptionPane.showConfirmDialog(this, "Deseas jugar otra vez?", "Nueva Partida", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                IniciarJuego();
+            }
+        }
+    }//GEN-LAST:event_IngresarActionPerformed
 
+    private void LetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LetraActionPerformed
+        // TODO add your handling code here:
+        IngresarActionPerformed(evt);
+    }//GEN-LAST:event_LetraActionPerformed
+
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_VolverActionPerformed
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Submit;
+    private javax.swing.JButton Ingresar;
+    private javax.swing.JTextField Letra;
+    private javax.swing.JLabel Mensaje;
+    private javax.swing.JLabel Oportunidad;
+    private javax.swing.JLabel Palabra;
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JButton Volver;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
